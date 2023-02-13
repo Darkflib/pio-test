@@ -18,7 +18,7 @@ float temp = 0;
 float humidity = 0;
 char buffer[50];
 
-AHT10 myAHT10(AHT10_ADDRESS_0X38);
+// AHT10 myAHT10(AHT10_ADDRESS_0X38);
 
 TFT_eSPI tft = TFT_eSPI();  // Create object "tft"
 
@@ -28,6 +28,7 @@ TFT_eSPI tft = TFT_eSPI();  // Create object "tft"
 void setup(void) {
   Serial.begin(115200);
   Serial.println();
+  /*
   
   while (myAHT10.begin() != true)
   {
@@ -35,7 +36,8 @@ void setup(void) {
     delay(5000);
   }
   Serial.println(F("AHT10 OK"));
-
+  */
+  
   tft.init();
   tft.setRotation(0);
   tft.fillScreen(TFT_DARKGREY);
@@ -44,9 +46,12 @@ void setup(void) {
 // -------------------------------------------------------------------------
 void loop()
 {
-  temp = myAHT10.readTemperature();
-  humidity = myAHT10.readHumidity();
+  //temp = myAHT10.readTemperature();
+  //humidity = myAHT10.readHumidity();
 
+  temp = random(1,30);
+  humidity = random(30,70);
+  
   Serial.println(F("DEMO 1: read 12-bytes, show 255 if communication error is occurred"));
   Serial.print(F("Temperature: ")); Serial.print(temp); Serial.println(F(" +-0.3C")); //by default "AHT10_FORCE_READ_DATA"
   Serial.print(F("Humidity...: ")); Serial.print(humidity);    Serial.println(F(" +-2%"));   //by default "AHT10_FORCE_READ_DATA"
