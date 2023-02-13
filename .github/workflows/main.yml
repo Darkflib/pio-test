@@ -5,9 +5,9 @@ jobs:
     name: Build
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3.3
+      - uses: actions/checkout@v3.3.0
       - name: Set up python
-        uses: actions/setup-python@v4.5
+        uses: actions/setup-python@v4.5.0
         with:
           python-version: '3.11'
           architecture: 'x64'
@@ -18,7 +18,7 @@ jobs:
       - name: Build firmware
         run: platformio run
       - name: Archive
-        uses: actions/upload-artifact@v3.1
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: firmware
           path: .pio/build/*/firmware.bin
