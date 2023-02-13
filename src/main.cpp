@@ -1,5 +1,8 @@
 #include <Arduino.h>
 #include <User_Setups/Setup25_TTGO_T_Display.h>
+  
+#define USER_SETUP_LOADED
+  
 #include <TFT_eSPI.h>       // Include the graphics library
 
 
