@@ -1,8 +1,7 @@
 #include <Arduino.h>
-#include <AHT10.h>
-#include <Wire.h>
-#include <TFT_eSPI.h>       // Include the graphics library
 #include <User_Setups/Setup25_TTGO_T_Display.h>
+#include <TFT_eSPI.h>       // Include the graphics library
+
 
 #include "NotoSansBold15.h"
 #include "NotoSansBold36.h"
@@ -18,9 +17,7 @@ float temp = 0;
 float humidity = 0;
 char buffer[50];
 
-// AHT10 myAHT10(AHT10_ADDRESS_0X38);
-
-TFT_eSPI tft = TFT_eSPI();  // Create object "tft"
+TFT_eSPI tft = TFT_eSPI();
 
 // -------------------------------------------------------------------------
 // Setup
@@ -28,16 +25,7 @@ TFT_eSPI tft = TFT_eSPI();  // Create object "tft"
 void setup(void) {
   Serial.begin(115200);
   Serial.println();
-  /*
-  
-  while (myAHT10.begin() != true)
-  {
-    Serial.println(F("AHT10 not connected or fail to load calibration coefficient")); //(F()) save string to flash & keeps dynamic memory free
-    delay(5000);
-  }
-  Serial.println(F("AHT10 OK"));
-  */
-  
+
   tft.init();
   tft.setRotation(0);
   tft.fillScreen(TFT_DARKGREY);
@@ -46,12 +34,9 @@ void setup(void) {
 // -------------------------------------------------------------------------
 void loop()
 {
-  //temp = myAHT10.readTemperature();
-  //humidity = myAHT10.readHumidity();
+  temp = random(0, 100);
+  humidity = random(0, 100);
 
-  temp = random(1,30);
-  humidity = random(30,70);
-  
   Serial.println(F("DEMO 1: read 12-bytes, show 255 if communication error is occurred"));
   Serial.print(F("Temperature: ")); Serial.print(temp); Serial.println(F(" +-0.3C")); //by default "AHT10_FORCE_READ_DATA"
   Serial.print(F("Humidity...: ")); Serial.print(humidity);    Serial.println(F(" +-2%"));   //by default "AHT10_FORCE_READ_DATA"
